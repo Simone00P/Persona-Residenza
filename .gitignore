@@ -4,7 +4,7 @@
 
 # VSCode
 .vscode/
-.code-workspace
+*.code-workspace
 
 # Build output
 target/
