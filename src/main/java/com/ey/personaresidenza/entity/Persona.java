@@ -36,5 +36,6 @@ public class Persona {
     private LocalDate dataNascita;
 
     @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
     private List<Residenza> residenze = new ArrayList<>();
 }
