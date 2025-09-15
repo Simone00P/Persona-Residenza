@@ -2,6 +2,10 @@
 .idea/
 *.iml
 
+# VSCode
+.vscode/
+.code-workspace
+
 # Build output
 target/
 build/
