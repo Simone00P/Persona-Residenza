@@ -1,9 +1,7 @@
 package com.ey.personaresidenza.controller;
 
 import com.ey.personaresidenza.entity.Persona;
-import com.ey.personaresidenza.entity.Residenza;
 import com.ey.personaresidenza.service.PersonaService;
-import com.ey.personaresidenza.service.ResidenzaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +15,6 @@ public class PersonaController {
 
     @Autowired
     private PersonaService personaService;
-
-    @Autowired
-    private ResidenzaService residenzaService;
 
     @GetMapping
     public List<Persona> getAllPersone() {
@@ -50,16 +45,5 @@ public class PersonaController {
     public void deletePersona(@PathVariable Long id) {
         personaService.deletePersona(id);
     }
-
-    @PostMapping("/{personaId}/residenza")
-    public Residenza addResidenza(@PathVariable Long personaId, @RequestBody Residenza residenza) {
-        return residenzaService.addResidenza(personaId, residenza);
-    }
-
-    @PutMapping("/{personaId}/residenza")
-    public Residenza updateResidenza(@PathVariable Long personaId, @RequestBody Residenza residenza) {
-        return residenzaService.updateResidenza(personaId, residenza);
-    }
-
     
 }
