@@ -1,0 +1,36 @@
+Backend - Spring Boot:
+1.	Configurazione dell'ambiente di sviluppo: Ide Java, come Eclipse o IntelliJ. 
+2.	Creazione di un progetto Spring Boot
+3.	Implementazione dell'entità:
+Creare le seguenti classe Java che rappresentano 
+a.	l'oggetto Persona , aventi i seguenti campi : id, nome , cognome , codice fiscale, dataNascita 
+b.	l’oggetto Residenza aventi i seguenti campi : id, indirizzo,cap, città, id_anagrafica 
+c.	Per la creazione degli oggetti usare le annotazioni di JPA (@Entity, @Id, etc.) necessarie per indicare che queste classi saranno gestite da dei repository 
+d.	Per la tabella Residenza deve esserci Il vincolo che la colonna id_anagrafica sia contenuto nella colonna id della tabella Persona 
+4.	Creazione dei repository:
+Creare le interfaccia che estendono JpaRepository per gestire l'accesso ai dati delle entità (PersonaRepository, ResidenzaRepository ). 
+5.	Creazione dei seguenti endpoint: 
+a.	controller che recupera la lista delle persone presenti nel db 
+b.	controller che aggiunge l’indirizzo per un Persona presente nel DB 
+c.	controller per modificare l’indirizzo per una Persona presente nel DB 
+d.	controller per cancellare una Persona nel DB 
+e.	controller per che dato un indirizzo restituisca la lista delle persone che vivono presso un certo indirizzo 
+6.	Utilizzare i metodi di PersonaRepository, ResidenzaRepository per interagire con il database. Per la creazione del DB e l’impostazione della connessione usare una DB in memory H2 https://www.baeldung.com/spring-boot-h2-database 
+7.	Testare le diverse funzionalità attraverso Postman.
+8.	Opzionale: Implementare la gestione degli errori e la validazione dei dati di ingresso
+
+Frontend - React:
+1.	Creare un'applicazione React utilizzando un ambiente di build a scelta.
+2.	Definizione del sistema di routing per gestire la navigazione tra le pagine principali:
+a.	Pagina elenco persone: visualizza tutte le persone presenti nel sistema e include campi di ricerca per filtrare i risultati in base all'indirizzo.
+b.	Pagina dettaglio persona: mostra le informazioni della persona selezionata e consente la gestione della sua residenza.
+3.	Creare e integrare i seguenti componenti/azioni:
+a.	Un menu di navigazione per accedere rapidamente alle varie sezioni dell'app.
+b.	Visualizzazione dell’elenco delle persone recuperate dal backend.
+c.	Un form per associare una residenza a una persona (presente nella pagina di dettaglio).
+d.	Possibilità di modificare i dati di residenza già associati.
+e.	Azione per eliminare una persona dal database, direttamente dalla pagina di dettaglio o dall’elenco.
+4.	Funzionalità opzionali:
+a.	Visualizzazione di notifiche di esito (es. salvataggio avvenuto, errore) dopo ogni operazione.
+b.	Gestione di stati di caricamento ed errori durante le chiamate API.
+c.	Aggiunta di una stilizzazione base utilizzando una libreria UI a scelta
