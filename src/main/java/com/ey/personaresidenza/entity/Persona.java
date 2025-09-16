@@ -6,8 +6,6 @@ import jakarta.validation.constraints.Past;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "persona")
@@ -16,26 +14,26 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Persona {
+public class Persona 
+{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "'nome' non può essere vuoto")
     private String nome;
 
-    @NotBlank
+    @NotBlank(message = "'cognome' non può essere vuoto")
     private String cognome;
 
     @Column(name = "codice_fiscale", nullable = false, unique = true, length = 16)
-    @NotBlank
+    @NotBlank(message = "'codice_fiscale' non può essere vuoto")
     private String codiceFiscale;
 
-    @Past
+    @Past(message = "'dataNascita' deve essere una data passata")
     private LocalDate dataNascita;
 
-    @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL, orphanRemoval = true)
-    @Builder.Default
-    private List<Residenza> residenze = new ArrayList<>();
+    @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Residenza residenza;
 }

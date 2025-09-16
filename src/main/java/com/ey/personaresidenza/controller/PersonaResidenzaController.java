@@ -7,18 +7,21 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/persone/{personaId}/residenza")
-public class PersonaResidenzaController {
+public class PersonaResidenzaController 
+{
 
     @Autowired
     private ResidenzaService residenzaService;
 
     @PostMapping
-    public Residenza addResidenza(@PathVariable Long personaId, @RequestBody Residenza residenza) {
+    public Residenza addResidenza(@PathVariable Long personaId, @RequestBody Residenza residenza) 
+    {
         return residenzaService.addResidenza(personaId, residenza);
     }
 
     @PutMapping
-    public Residenza updateResidenza(@PathVariable Long personaId, @RequestBody Residenza residenza) {
+    public Residenza updateResidenza(@PathVariable Long personaId, @RequestBody Residenza residenza) 
+    {
         return residenzaService.updateResidenza(personaId, residenza);
     }
 }

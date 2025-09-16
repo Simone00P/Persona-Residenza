@@ -3,6 +3,8 @@ package com.ey.personaresidenza.controller;
 import com.ey.personaresidenza.entity.Persona;
 import com.ey.personaresidenza.service.PersonaService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,12 +34,12 @@ public class PersonaController {
     }
 
     @PostMapping
-    public Persona createPersona(@RequestBody Persona persona) {
+    public Persona createPersona(@Valid @RequestBody Persona persona) {
         return personaService.createPersona(persona);
     }
 
     @PutMapping("/{id}")
-    public Persona updatePersona(@PathVariable Long id, @RequestBody Persona personaDettagli) {
+    public Persona updatePersona(@PathVariable Long id, @Valid @RequestBody Persona personaDettagli) {
         return personaService.updatePersona(id, personaDettagli);
     }
 

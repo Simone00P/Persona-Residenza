@@ -7,6 +7,8 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface PersonaRepository extends JpaRepository<Persona, Long> {
-    @Query("select distinct p from Persona p join p.residenze r where lower(r.indirizzo) = lower(:indirizzo)")
+    @Query("select distinct p from Persona p join p.residenza r where lower(r.indirizzo) = lower(:indirizzo)")
     List<Persona> findByIndirizzo(@Param("indirizzo") String indirizzo);
+
+    boolean existsByCodiceFiscale(String codiceFiscale);
 }

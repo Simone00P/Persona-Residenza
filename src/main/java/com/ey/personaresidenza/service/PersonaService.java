@@ -1,7 +1,11 @@
 package com.ey.personaresidenza.service;
 
 import com.ey.personaresidenza.entity.Persona;
+import com.ey.personaresidenza.exception.ResourceNotFoundException;
 import com.ey.personaresidenza.repository.PersonaRepository;
+
+import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,12 +30,18 @@ public class PersonaService {
         return personaRepository.findByIndirizzo(indirizzo);
     }
 
+    @Transactional
     public Persona createPersona(Persona persona) {
+        if (personaRepository.existsByCodiceFiscale(persona.getCodiceFiscale())) {
+            throw new IllegalArgumentException("Codice fiscale già esistente: " + persona.getCodiceFiscale());
+        }
         return personaRepository.save(persona);
     }
 
+    @Transactional
     public Persona updatePersona(Long id, Persona personaDetails) {
-        Persona persona = personaRepository.findById(id).orElseThrow();
+        Persona persona = personaRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Persona non trovata con id: " + id));
         persona.setNome(personaDetails.getNome());
         persona.setCognome(personaDetails.getCognome());
         persona.setCodiceFiscale(personaDetails.getCodiceFiscale());
